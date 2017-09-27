@@ -113,24 +113,22 @@ previous user has not contributed yet.
 ```ruby
 transaction = Handshaker::Transaction::AllIn.new(
   steps: [
-    Handshaker::Step::Boolean.new(party: bob),
-    Handshaker::Step::Boolean.new(party: alice)
+    Handshaker::Step::Boolean.new(party: seller),
+    Handshaker::Step::Boolean.new(party: buyer)
   ],
   ordered: true
 )
 
 transaction.valid? # => false
 
-transaction.contribute_as(alice, with: true) # raises Handshaker::OrderError
+transaction.contribute_as(buyer, with: true) # raises Handshaker::OrderError
 
-transaction.contribute_as(bob, with: true)
+transaction.contribute_as(seller, with: true)
 transaction.valid? # => false
 
-transaction.contribute_as(alice, with: true)
+transaction.contribute_as(buyer, with: true)
 transaction.valid? # => true
 ```
-
-(In case you're wondering, yes, we also have an `AllOut` transaction.)
 
 ## Development
 
