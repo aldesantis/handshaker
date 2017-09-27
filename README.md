@@ -58,7 +58,7 @@ Not impressed yet? Read on.
 ### Transaction types
 
 Transactions can be resolved in different ways. For instance, consider the following scenario:
-Bob and Alice want are going on a trip together and they must agree on how much they want to spend.
+Bob and Alice are going on a trip together and they must agree on how much they want to spend.
 In this case, we don't care about them entering an exact value in the system, we just want them to
 enter _the same value_ before we allow the transaction to continue.
 
