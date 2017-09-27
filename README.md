@@ -55,14 +55,14 @@ passwords.
 
 Not impressed yet? Read on.
 
-### Resolution strategies
+### Transaction types
 
 Transactions can be resolved in different ways. For instance, consider the following scenario:
 Bob and Alice want are going on a trip together and they must agree on how much they want to spend.
 In this case, we don't care about them entering an exact value in the system, we just want them to
 enter _the same value_ before we allow the transaction to continue.
 
-This type of transaction is a joint-resolution transaction, which is represented by a 
+This type of transaction is a joint resolution transaction, which is represented by a 
 `Handshaker::Transaction::Joint` object:
 
 ```ruby
@@ -81,17 +81,34 @@ transaction.valid? # => false
 
 transaction.contribute_as(alice, with: 1000) # Alice agrees to spend 1000 USD
 transaction.valid? # => true
+transaction.resolution # => 1000
 ```
 
-### Order enforcement
+The following table details the strategies we have and how they work:
+
+| Transaction Type | Description |
+| ---------------- | ----------- |
+| `Strict` | Expects all users to provide the answer configured in their step. |
+| `Joint` | Expects all users to provide the same answer. |
+| `AllIn` | Expects all users to reply `true`. |
+| `AllOut` | Expects all users to reply `false`. |
+
+Note that, while you can mix and match transaction types and step types in any way you want (because
+steps share the same interface), some step types don't make much sense in certain contexts. For 
+instance, it would not make much sense to create a joint transaction with literal steps, because it
+would either be non-resolvable or have a predictable outcome.
+
+Similarly, it is not recommended to mix different step types in the same transaction, as the results
+would be pretty unpredictable. Handshaker might raise an error in the future about this.
+
+### Enforcing order
 
 We can enforce the order in which the steps are executed. This can be useful, for instance, if you
 want to collect decisions in a specific order. For instance, in a sale transaction you might want to
 verify that the seller confirms delivery before the buyer confirms reception.
 
-Here we actually introduce three new concepts: the `Boolean` step, which only accepts a yes/no 
-answer, the `AllIn` resolution, which ensures everyone replied "yes", and the `ordered` property,
-which forbids a user to contribute if the previous user has not contributed yet.
+To accomplish this, we can use the `ordered` property, which forbids a user to contribute if the 
+previous user has not contributed yet.
 
 ```ruby
 transaction = Handshaker::Transaction::AllIn.new(
