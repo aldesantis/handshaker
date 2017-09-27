@@ -43,10 +43,10 @@ transaction.valid? # => false
 transaction.contribute_as(alice, with: 'Secret456') # => Handshaker::Contribution
 transaction.valid? # => false
 
-transaction.contribute_as(bob, with: 'Secret789') # => Handshaker::Contribution
+transaction.contribute_as(bob, with: 'Secret789')
 transaction.valid? # => false
  
-transaction.contribute_as(bob, with: 'Secret123') # => Handshaker::Contribution
+transaction.contribute_as(bob, with: 'Secret123')
 transaction.valid? # => true
 ```
 
@@ -83,7 +83,7 @@ transaction.contribute_as(alice, with: 1000) # Alice agrees to spend 1000 USD
 transaction.valid? # => true
 ```
 
-### Order enforcement
+### Order enforcement
 
 We can enforce the order in which the steps are executed. This can be useful, for instance, if you
 want to collect decisions in a specific order. For instance, in a sale transaction you might want to
