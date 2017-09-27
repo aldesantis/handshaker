@@ -98,6 +98,7 @@ The following table details the strategies we have and how they work:
 The following table details the steps we have and how they work:
 
 | Step type | Description |
+| --------- | ----------- |
 | `Literal` | Expects the exact answer configured in its step. |
 | `Boolean` | Expects a boolean answer. |
 | `Open` | Accepts any answer. |
