@@ -55,7 +55,7 @@ passwords.
 
 Not impressed yet? Read on.
 
-### Transaction types
+### Transaction/step types
 
 Transactions can be resolved in different ways. For instance, consider the following scenario:
 Bob and Alice are going on a trip together and they must agree on how much they want to spend.
@@ -86,12 +86,19 @@ transaction.resolution # => 1000
 
 The following table details the strategies we have and how they work:
 
-| Transaction Type | Description |
+| Transaction type | Description |
 | ---------------- | ----------- |
 | `Strict` | Expects all users to provide the answer configured in their step. |
 | `Joint` | Expects all users to provide the same answer. |
 | `AllIn` | Expects all users to reply `true`. |
 | `AllOut` | Expects all users to reply `false`. |
+
+The following table details the steps we have and how they work:
+
+| Step type | Description |
+| `Literal` | Expects the exact answer configured in its step. |
+| `Boolean` | Expects a boolean answer. |
+| `Open` | Accepts any answer. |
 
 Note that, while you can mix and match transaction types and step types in any way you want (because
 steps share the same interface), some step types don't make much sense in certain contexts. For 
