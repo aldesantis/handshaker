@@ -63,7 +63,9 @@ In this case, we don't care about them entering an exact value in the system, we
 enter _the same value_ before we allow the transaction to continue.
 
 This type of transaction is a joint resolution transaction, which is represented by a 
-`Handshaker::Transaction::Joint` object:
+`Handshaker::Transaction::Joint` object. It will also not use the `Literal` step type, which expects
+an answer we already know, but rather the `Open` step type, which lets the users reply however they
+want and negotiate an answer:
 
 ```ruby
 transaction = Handshaker::Transaction::Joint.new(steps: [
