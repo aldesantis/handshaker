@@ -158,3 +158,4 @@ The gem is available as open source under the terms of the [MIT License](http://
 - `transaction.missing_users`
 - `transaction.invalid_users`
 - Transaction locking once validated
+- AR/Rails/Pragma integration
