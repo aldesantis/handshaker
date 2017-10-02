@@ -15,6 +15,10 @@ RSpec.describe Handshaker::Step::Base do
     it 'sets contribution to nil' do
       expect(subject.contribution).to be_nil
     end
+
+    it 'is invalid' do
+      expect(subject).not_to be_valid
+    end
   end
 
   describe '#contribute' do
@@ -28,6 +32,10 @@ RSpec.describe Handshaker::Step::Base do
 
     it 'makes step contributed' do
       expect(subject).to be_contributed
+    end
+
+    it 'makes step valid' do
+      expect(subject).to be_valid
     end
   end
 end

@@ -18,6 +18,10 @@ module Handshaker
       def contributed?
         !contribution.nil?
       end
+
+      def valid?
+        contributed?
+      end
     end
   end
 end
