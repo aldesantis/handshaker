@@ -4,6 +4,7 @@ require 'handshaker/version'
 require 'handshaker/errors'
 require 'handshaker/step/base'
 require 'handshaker/step/open'
+require 'handshaker/step/boolean'
 
 module Handshaker
 end
