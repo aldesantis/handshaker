@@ -74,13 +74,80 @@ RSpec.describe Handshaker::Transaction::Base do
     end
   end
 
-  describe 'valid?' do
-    it 'is not implemented in base class' do
-      expect { subject.valid? }.to raise_error(NotImplementedError)
+  describe '#missing_steps' do
+    it 'returns a list of not contributed steps' do
+      subject.contribute_as(buyer, with: 'foo')
+      expect(subject.missing_steps).to eq([seller_step])
+    end
+
+    it 'returns empty array when everyone contributed (no matter valid or no)' do
+      subject.contribute_as(buyer, with: 'foo')
+      subject.contribute_as(seller, with: 'bar')
+      expect(subject.missing_steps).to eq([])
     end
   end
 
-  describe 'resolution' do
+  describe 'invalid_steps' do
+    let(:transaction) { described_class.new(steps: steps) }
+
+    context 'when there is no contributions' do
+      it 'returns an empty array' do
+        expect(transaction.invalid_steps).to eq([])
+      end
+    end
+
+    context 'when there is contribution and it is invalid' do
+      before do
+        expect(transaction).to receive(:validate_step).with(seller_step).and_return(false)
+      end
+
+      it 'returns the step' do
+        transaction.contribute_as(seller, with: 'wrong value')
+        expect(transaction.invalid_steps).to eq([seller_step])
+      end
+    end
+
+    context 'when there is contribution and it is valid' do
+      before do
+        expect(transaction).to receive(:validate_step).with(seller_step).and_return(true)
+      end
+
+      it 'returns empty array' do
+        transaction.contribute_as(seller, with: 'correct value')
+        expect(transaction.invalid_steps).to eq([])
+      end
+    end
+  end
+
+  describe '#valid?' do
+    let(:transaction) { described_class.new(steps: steps) }
+
+    context 'when there are missing steps' do
+      it 'returns false' do
+        allow(transaction).to receive(:missing_steps).and_return([seller_step])
+        allow(transaction).to receive(:invalid_steps).and_return([])
+        expect(transaction.valid?).to be_falsy
+      end
+    end
+
+    context 'when there are invalid steps' do
+      it 'returns false' do
+        allow(transaction).to receive(:missing_steps).and_return([])
+        allow(transaction).to receive(:invalid_steps).and_return([seller_step])
+        expect(transaction.valid?).to be_falsy
+      end
+    end
+
+    context 'when there are no invalid or missing steps' do
+      it 'returns false' do
+        allow(transaction).to receive(:missing_steps).and_return([])
+        allow(transaction).to receive(:invalid_steps).and_return([])
+        expect(transaction.valid?).to be_truthy
+      end
+    end
+  end
+
+  describe '#resolution' do
     it 'is not implemented in base class' do
       expect { subject.resolution }.to raise_error(NotImplementedError)
     end

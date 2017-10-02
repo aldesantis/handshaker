@@ -21,14 +21,38 @@ module Handshaker
       end
 
       def valid?
-        fail NotImplementedError
+        missing_steps.empty? && invalid_steps.empty?
       end
 
       def resolution
         fail NotImplementedError
       end
 
+      def missing_steps
+        steps.reject(&:contributed?)
+      end
+
+      def contributed_steps
+        steps.select(&:contributed?)
+      end
+
+      def missing_parties
+        missing_steps.map(&:party)
+      end
+
+      def invalid_steps
+        contributed_steps.reject { |s| validate_step(s) }
+      end
+
+      def invalid_parties
+        invalid_steps.map(&:party)
+      end
+
       protected
+
+      def validate_step(step)
+        step.valid?
+      end
 
       def validate_steps_option(steps)
         unless steps.is_a?(Array)
