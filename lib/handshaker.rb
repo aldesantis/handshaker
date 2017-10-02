@@ -9,6 +9,7 @@ require 'handshaker/step/boolean'
 require 'handshaker/step/literal'
 
 require 'handshaker/transaction/base'
+require 'handshaker/transaction/strict'
 
 module Handshaker
 end
