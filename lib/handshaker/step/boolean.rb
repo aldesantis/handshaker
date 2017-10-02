@@ -7,7 +7,7 @@ module Handshaker
         if contribution == true || contribution == false
           super(contribution)
         else
-          fail ContributionError, 'Boolean contribution is expected'
+          fail ContributionValueError, 'Boolean contribution is expected'
         end
       end
     end

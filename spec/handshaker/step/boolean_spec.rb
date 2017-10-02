@@ -20,8 +20,8 @@ RSpec.describe Handshaker::Step::Boolean do
     end
 
     describe 'string contribution' do
-      it 'raises Handshaker::ContributionError' do
-        expect { subject.contribute('answer') }.to raise_error(Handshaker::ContributionError)
+      it 'raises Handshaker::ContributionValueError' do
+        expect { subject.contribute('answer') }.to raise_error(Handshaker::ContributionValueError)
       end
     end
   end
