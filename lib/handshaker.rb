@@ -2,7 +2,7 @@
 
 require 'handshaker/version'
 require 'handshaker/step/base'
+require 'handshaker/step/open'
 
 module Handshaker
-  # Your code goes here...
 end
