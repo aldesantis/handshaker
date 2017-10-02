@@ -8,28 +8,24 @@ RSpec.describe Handshaker::Step::Open do
   let(:party) { 'buyer' }
 
   describe '#contribute' do
-    before { subject.contribute(contribution) }
-
     describe 'boolean contribution' do
-      let(:contribution) { true }
-
       it 'is acceptable' do
-        expect(subject.contribution).to eq(contribution)
+        expect { subject.contribute(true) }.not_to raise_error
       end
 
       it 'makes step valid' do
+        subject.contribute(true)
         expect(subject).to be_valid
       end
     end
 
     describe 'string contribution' do
-      let(:contribution) { 'foo' }
-
       it 'is acceptable' do
-        expect(subject.contribution).to eq(contribution)
+        expect { subject.contribute('answer') }.not_to raise_error
       end
 
       it 'makes step valid' do
+        subject.contribute('answer')
         expect(subject).to be_valid
       end
     end
