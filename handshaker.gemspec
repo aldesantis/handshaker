@@ -9,9 +9,11 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Alessandro Desantis"]
   spec.email         = ["desa.alessandro@gmail.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = "Handshaker is a Ruby gem for implementing multi-strategy Collaborative Transactional Validation"
+  spec.description   = %q{CTV is a process where multiple parties cooperate to validate the integrity of a transaction.
+    You can think of it as a very sophisticated `if` check, that might potentially involve tens of different conditions.
+  }
+  spec.homepage      = "https://github.com/batteries911/handshaker"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
