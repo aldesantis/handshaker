@@ -1,0 +1,157 @@
+require: rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 2.4
+  Include:
+    - '**/Gemfile'
+    - '**/Rakefile'
+  Exclude:
+   - 'bin/*'
+   - 'db/**/*'
+   - 'vendor/bundle/**/*'
+   - 'spec/spec_helper.rb'
+   - 'spec/rails_helper.rb'
+   - 'spec/support/**/*'
+   - 'config/**/*'
+   - '**/Rakefile'
+   - '**/Gemfile'
+   - 'lib/dev_utils/**/*'
+
+Rails:
+  Enabled: true
+
+Style/Documentation:
+  Enabled: false
+
+RSpec/DescribeClass:
+  Exclude:
+    - 'spec/requests/**/*'
+    - 'spec/tasks/**/*'
+    - 'spec/functional/**/*'
+
+Layout/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+Layout/ClosingParenthesisIndentation:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 100
+  AllowURI: true
+
+Layout/FirstParameterIndentation:
+  Enabled: false
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Layout/MultilineMethodCallBraceLayout:
+  Enabled: false
+
+Layout/IndentArray:
+  EnforcedStyle: consistent
+
+Layout/IndentHash:
+  EnforcedStyle: consistent
+
+Style/SignalException:
+  EnforcedStyle: semantic
+
+Style/BracesAroundHashParameters:
+  EnforcedStyle: context_dependent
+
+Lint/EndAlignment:
+  EnforcedStyleAlignWith: variable
+  AutoCorrect: true
+
+Style/AndOr:
+  EnforcedStyle: conditionals
+
+Style/NumericPredicate:
+  Enabled: false
+
+Rails/HasAndBelongsToMany:
+  Enabled: false
+
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+
+RSpec/NamedSubject:
+  Enabled: false
+
+RSpec/MessageExpectation:
+  Enabled: false
+
+RSpec/MessageSpies:
+  Enabled: false
+
+Metrics/ClassLength:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Rails/HttpPositionalArguments:
+  Enabled: false
+
+Rails/SkipsModelValidations:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Max: 4
+
+Metrics/LineLength:
+  Max: 120
+  IgnoredPatterns: ['\A#']
+
+RSpec/FilePath:
+  CustomTransform:
+    B2Q: b2q
+
+Layout/CaseIndentation:
+  EnforcedStyle: end
+
+Style/GuardClause:
+  Enabled: false
+
+Layout/EmptyLines:
+  Enabled: false
+
+Style/TrailingCommaInLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInArguments:
+  Enabled: false
+
+Style/FormatString:
+  EnforcedStyle: sprintf
+
+Style/DoubleNegation:
+  Enabled: false
+
+Rails/Blank:
+  Enabled: false # disabled because crashes (https://github.com/bbatsov/rubocop/issues/4171)
+
+Bundler/OrderedGems:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+Style/IfInsideElse:
+  Enabled: false
+
+Style/SafeNavigation:
+  AutoCorrect: false # https://github.com/bbatsov/rubocop/issues/4760
