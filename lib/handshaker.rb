@@ -12,6 +12,7 @@ require 'handshaker/transaction/base'
 require 'handshaker/transaction/strict'
 require 'handshaker/transaction/all_in'
 require 'handshaker/transaction/all_out'
+require 'handshaker/transaction/joint'
 
 module Handshaker
 end
