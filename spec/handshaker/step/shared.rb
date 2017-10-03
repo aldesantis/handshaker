@@ -1,12 +1,6 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
-
-RSpec.describe Handshaker::Step::Base do
-  subject { described_class.new(party: party) }
-
-  let(:party) { 'buyer' }
-
+RSpec.shared_examples 'step basics' do
   describe 'initializer' do
     it 'sets party' do
       expect(subject.party).to eq(party)
@@ -22,8 +16,6 @@ RSpec.describe Handshaker::Step::Base do
   end
 
   describe '#contribute' do
-    let(:contribution) { 100 }
-
     before { subject.contribute(contribution) }
 
     it 'sets contribution' do

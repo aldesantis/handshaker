@@ -1,11 +1,15 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
+require_relative './shared'
 
 RSpec.describe Handshaker::Step::Open do
   subject { described_class.new(party: party) }
 
   let(:party) { 'buyer' }
+  let(:contribution) { 'anything goes' }
+
+  include_examples 'step basics'
 
   describe '#contribute' do
     describe 'boolean contribution' do
