@@ -15,14 +15,5 @@ RSpec.describe Handshaker::Transaction::Strict do
   let(:buyer) { 'buyer' }
   let(:seller) { 'seller' }
 
-  describe 'initialization' do
-    describe 'steps: param validation' do
-      it 'throws ArgumentError when steps are not Step::Literal' do
-        steps = [Handshaker::Step::Open.new(party: buyer), Handshaker::Step::Boolean.new(party: seller)]
-        expect { described_class.new(steps: steps) }.to raise_error(ArgumentError)
-      end
-    end
-  end
-
   include_examples 'integrational'
 end

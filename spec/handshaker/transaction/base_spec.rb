@@ -15,27 +15,6 @@ RSpec.describe Handshaker::Transaction::Base do
     it 'sets steps' do
       expect(subject.steps).to eq(steps)
     end
-
-    describe 'steps: param validation' do
-      it 'throws ArgumentError when it is not array' do
-        expect { described_class.new(steps: 1) }.to raise_error(ArgumentError)
-      end
-
-      it 'throws ArgumentError when there is only one step' do
-        steps = [buyer_step]
-        expect { described_class.new(steps: steps) }.to raise_error(ArgumentError)
-      end
-
-      it 'throws ArgumentError when not all members are Step' do
-        steps = [buyer_step, Object.new]
-        expect { described_class.new(steps: steps) }.to raise_error(ArgumentError)
-      end
-
-      it 'throws ArgumentError when it contais steps with duplicate members' do
-        steps = [buyer_step, buyer_step]
-        expect { described_class.new(steps: steps) }.to raise_error(ArgumentError)
-      end
-    end
   end
 
   describe '#step_for' do

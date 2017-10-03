@@ -6,7 +6,6 @@ module Handshaker
       attr_reader :steps
 
       def initialize(steps:)
-        validate_steps_option(steps)
         @steps = steps
         @locked = false
       end
@@ -66,25 +65,6 @@ module Handshaker
 
       def validate_step(step)
         step.valid?
-      end
-
-      def validate_steps_option(steps)
-        unless steps.is_a?(Array)
-          throw ArgumentError, 'steps option must be of Array type'
-        end
-
-        if steps.size < 2
-          throw ArgumentError, 'steps count must be greater than 1'
-        end
-
-        if steps.find { |s| !s.is_a?(Handshaker::Step::Base) }
-          throw ArgumentError, 'all steps must be of Handshaker::Step::Base type'
-        end
-
-        parties = steps.map(&:party)
-        if parties.size != parties.uniq.size
-          throw ArgumentError, 'no duplicate parties are allowed in steps'
-        end
       end
     end
   end
