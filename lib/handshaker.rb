@@ -10,6 +10,7 @@ require 'handshaker/step/literal'
 
 require 'handshaker/transaction/base'
 require 'handshaker/transaction/strict'
+require 'handshaker/transaction/all_in'
 
 module Handshaker
 end
