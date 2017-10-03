@@ -8,13 +8,11 @@ module Handshaker
       def initialize(steps:)
         validate_steps_option(steps)
         @steps = steps
-      end
-
-      def step_for(party)
-        steps.find { |s| s.party == party }
+        @locked = false
       end
 
       def contribute_as(party, with:)
+        fail TransactionLockedError if locked?
         step = step_for(party)
         fail ContributionPartyError, 'Party not found' unless step
         step.contribute(with)
@@ -26,6 +24,18 @@ module Handshaker
 
       def resolution
         fail NotImplementedError
+      end
+
+      def locked?
+        @locked
+      end
+
+      def lock!
+        @locked = true
+      end
+
+      def unlock!
+        @locked = false
       end
 
       def missing_steps
@@ -46,6 +56,10 @@ module Handshaker
 
       def invalid_parties
         invalid_steps.map(&:party)
+      end
+
+      def step_for(party)
+        steps.find { |s| s.party == party }
       end
 
       protected

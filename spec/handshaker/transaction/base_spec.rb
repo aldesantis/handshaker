@@ -152,4 +152,32 @@ RSpec.describe Handshaker::Transaction::Base do
       expect { subject.resolution }.to raise_error(NotImplementedError)
     end
   end
+
+  describe 'transaction locking' do
+    it 'is unlocked by default' do
+      expect(subject).not_to be_locked
+    end
+
+    describe '#lock!' do
+      it 'locks transaction' do
+        subject.lock!
+        expect(subject).to be_locked
+      end
+    end
+
+    describe '#unlock!' do
+      it 'unlocks transaction' do
+        subject.lock!
+        subject.unlock!
+        expect(subject).not_to be_locked
+      end
+    end
+
+    describe 'contributing to locked transaction' do
+      it 'will raise TransactionLockedError' do
+        subject.lock!
+        expect { subject.contribute_as(buyer, with: 1000) }.to raise_error(Handshaker::TransactionLockedError)
+      end
+    end
+  end
 end
