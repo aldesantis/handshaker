@@ -11,6 +11,7 @@ require 'handshaker/step/literal'
 require 'handshaker/transaction/base'
 require 'handshaker/transaction/strict'
 require 'handshaker/transaction/all_in'
+require 'handshaker/transaction/all_out'
 
 module Handshaker
 end
