@@ -15,5 +15,7 @@ RSpec.describe Handshaker::Transaction::AllOut do
   let(:buyer) { 'buyer' }
   let(:seller) { 'seller' }
 
+  include_examples 'transaction basics'
+  include_examples 'transaction #invalid_steps and #valid'
   include_examples 'integrational'
 end

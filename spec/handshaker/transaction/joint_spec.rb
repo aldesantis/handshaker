@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
+require_relative './shared'
 
 RSpec.describe Handshaker::Transaction::Joint do
   subject { described_class.new(steps: steps) }
@@ -10,6 +11,10 @@ RSpec.describe Handshaker::Transaction::Joint do
   let(:seller_step) { Handshaker::Step::Open.new(party: seller) }
   let(:buyer) { 'buyer' }
   let(:seller) { 'seller' }
+  let(:buyer_answer) { 500 }
+  let(:seller_answer) { 500 }
+
+  include_examples 'transaction basics'
 
   describe 'integrational' do
     context 'when there is no contributions' do
