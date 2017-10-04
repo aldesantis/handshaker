@@ -161,9 +161,4 @@ The gem is available as open source under the terms of the [MIT License](http://
 
 ## Todo
 
-- `transaction.missing_steps`
-- `transaction.invalid_steps`
-- `transaction.missing_users`
-- `transaction.invalid_users`
-- Transaction locking once validated
 - AR/Rails/Pragma integration
